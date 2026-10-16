@@ -9,4 +9,14 @@ public class Ticket {
     private int violationFee;
     private Date issueDate;
     private Date dueDate;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
 }
