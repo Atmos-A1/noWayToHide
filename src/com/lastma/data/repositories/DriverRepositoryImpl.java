@@ -24,21 +24,34 @@ public class DriverRepositoryImpl implements DriverRepository {
 
     @Override
     public Driver findById(int id) {
-        return null;
+        for (Driver driver : drivers) {
+            if (driver.getId() == id) {
+                return driver;
+            }
+        }
+        throw new IllegalArgumentException("Driver with id " + id + " not found");
     }
 
     @Override
     public List<Driver> findAll() {
-        return List.of();
+        if(numberOfDrivers == 0){
+            throw new IllegalArgumentException("no drivers found");
+        }
+        return  drivers;
     }
 
     @Override
     public void delete(int driverId) {
+        Driver lookedUpDriver = findById(driverId);
+        drivers.remove(lookedUpDriver);
+        numberOfDrivers--;
 
     }
 
     @Override
     public void deleteAll() {
+        drivers.clear();
+        numberOfDrivers = 0;
 
     }
 }
